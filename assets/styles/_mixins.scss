@@ -1,0 +1,33 @@
+/// Target extra-small devices
+@mixin xs-device {
+  @media (max-width: $xs-device) { @content; }
+}
+
+/// Target small devices
+@mixin sm-device {
+  @media (min-width: $sm-device) and (max-width: $md-device) { @content; }
+}
+
+/// Target medium size devices
+@mixin md-device {
+  @media (min-width: $md-device) and (max-width: $lg-device) { @content; }
+}
+
+/// Target large devices
+@mixin lg-device {
+  @media (min-width: $lg-device) and (max-width: $xl-device) { @content; }
+}
+
+/// Target large devices
+@mixin xl-device {
+  @media (min-width: $xl-device) { @content; }
+}
+
+/// Target multiple devices at once
+@mixin devices($xs: false, $sm: false, $md: false, $lg: false, $xl: false) {
+  @if $xs == true { @include xs-device { @content; }}
+  @if $sm == true { @include sm-device { @content; }}
+  @if $md == true { @include md-device { @content; }}
+  @if $lg == true { @include lg-device { @content; }}
+  @if $xl == true { @include xl-device { @content; }}
+}

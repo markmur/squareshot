@@ -1,0 +1,996 @@
+// Reset stylesheet
+@import "_reset";
+
+// Fonts
+@import "feather";
+@import "entypo";
+
+// Sass imports
+@import "_variables";
+@import "_mixins";
+@import "_loaders";
+
+.tgl {
+	display: none;
+
+	// add default box-sizing for this scope
+	&,
+  &:after,
+  &:before,
+	& *,
+  & *:after,
+  & *:before,
+	& + .tgl-btn {
+		box-sizing: border-box;
+
+		&::selection {
+			background: none;
+		}
+	}
+
+	+ .tgl-btn {
+		outline: 0;
+		display: block;
+		width: 4em;
+		height: 2em;
+		position: relative;
+		cursor: pointer;
+    user-select: none;
+
+		&:after,
+    &:before {
+			position: relative;
+			display: block;
+			content: "";
+			width: 50%;
+			height: 100%;
+		}
+
+		&:after {
+			left: 0;
+		}
+
+		&:before {
+			display: none;
+		}
+	}
+
+	&:checked {
+		+ .tgl-btn {
+			&:after {
+				left: 50%;
+			}
+		}
+	}
+}
+
+.tgl-flat {
+	+ .tgl-btn {
+		padding: 2px;
+		transition: all .2s ease;
+		background: #fff;
+		border: 4px solid #f2f2f2;
+		border-radius: 2em;
+
+    &:after {
+			transition: all .2s ease;
+			background: #f2f2f2;
+			content: "";
+			border-radius: 1em;
+		}
+	}
+
+	&:checked {
+		+ .tgl-btn {
+			border: 4px solid $blue;
+
+      &:after {
+				left: 50%;
+				background: $blue;
+			}
+		}
+	}
+}
+
+html, body {
+  background: $bg;
+  color: $navy;
+  font-family: "Helvetica Neue";
+  font-weight: 300;
+  font-size: 16px;
+}
+
+a, a:visited {
+	color: inherit;
+	text-decoration: inherit;
+	font-style: inherit;
+	font-family: "Helvetica Neue";
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.clearfix {
+	&:before, &:after { content: " "; display: table; }
+	&:after { clear: both }
+}
+
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+.error-message {
+	text-align: center;
+	margin: 3em 0;
+}
+
+.brand-font {
+  font-family: 'Kaushan Script', cursive;
+}
+
+header {
+	background: white;
+	text-align: center;
+	padding: 1.5em 1em 1em;
+	border-top: 2px solid $blue;
+	box-shadow: 0 0 2px 0 rgba(0,0,0,0.05);
+	position: fixed;
+	width: 100%;
+	z-index: 1000;
+	top: 0;
+	@extend .clearfix;
+	transform: translateZ(0);
+
+  main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+		align-items: center;
+    margin-bottom: 1.5em;
+		padding: 0 0.5em;
+  }
+
+	#brand {
+		font-size: 1.2em;
+		color: lighten($navy, 30%);
+
+		&:hover {
+			color: $navy;
+		}
+
+		a {
+			font-family: 'Kaushan Script', cursive;
+
+			&:hover {
+				opacity: 1;
+			}
+		}
+	}
+
+	#logo {
+		color: $blue;
+		font-weight: lighter;
+		font-style: italic;
+		font-size: 2em;
+    margin-left: 3.5em;
+	}
+
+	#login > button,
+	#login > a {
+		color: #666;
+		padding: 0.75em 1em;
+		border: 1px solid $grey;
+		background: lighten($grey, 8%);
+		border-radius: 5px;
+		font-size: 0.8em;
+		cursor: pointer;
+		transition: all 0.5s ease;
+		outline: none;
+		visibility: hidden;
+
+		i { margin-right: 1em; vertical-align: middle; }
+
+		&:hover { color: $blue; border-color: $blue; }
+
+	}
+
+	#loggedin {
+		&:hover {
+			a > span { color: darken($blue, 5%); text-decoration: underline; }
+
+			ul {
+				display: block;
+			}
+		}
+
+		& > img, a { display: inline-block }
+
+		a > span {
+			color: $blue;
+		}
+
+		i {
+			position: relative;
+			top: 3px;
+			color: $navy;
+		}
+
+		img {
+			border-radius: 50%;
+			width: 35px;
+			vertical-align: middle;
+		}
+
+		ul {
+			background: white;
+			font-size: 0.9em;
+			text-align: left;
+			padding: 1em 0 0;
+			border-radius: 5px;
+			position: relative;
+			display: none;
+			box-shadow: 0 1px 5px 0 rgba(black, 0.3);
+
+			li {
+
+				&:last-of-type {
+					border-top: 1px solid #eee;
+					border-radius: 0 0 5px 5px;
+				}
+
+
+				a {
+					padding: 0.75em 1em;
+					display: block;
+				}
+
+				&:nth-child(2n + 1){
+						background: #fefefe;
+					}
+
+				&:hover {
+					background: $blue;
+					color: white;
+				}
+
+
+			}
+		}
+	}
+
+	#header-arrow {
+		padding: 1.5em 0 0;
+		cursor: pointer;
+		max-width: 300px;
+		margin: 1em auto 0;
+		background: white;
+		position: relative;
+		z-index: 5;
+
+		&:after {
+			position: absolute;
+			top: 0px; left: 0;
+			content: "";
+			height: 4px;
+			display: block;
+			width: 100%;
+			z-index:-1;
+			opacity: 0.2;
+
+			background-image: radial-gradient(center bottom, ellipse farthest-side, lighten(#aaaaaa, 5%) 0%, #FFFFFF 100%);
+		}
+
+		i {
+			color: $light-navy;
+		}
+
+		&:hover i {
+			color: $navy;
+		}
+	}
+
+	nav {
+		max-width: 800px;
+		margin: 0 auto 2em;
+		position: relative;
+
+		.search {
+	    float: left;
+	    max-width: 100%;
+	    width: calc(100% - 460px);
+	    text-align: left;
+	    position: relative;
+
+	    #search-button {
+	    	background: transparent;
+	    	outline: none; border: none;
+	    	color: lighten($blue, 10%);
+	    	position: absolute;
+	    	top: 0; right: -2em;
+	    	z-index: 10;
+	    	font-size: 16px;
+	    	padding: 1.1em 1.1em 1.1em 0.25em;
+	    	cursor: pointer;
+
+	    	&:hover { color: $blue }
+	    }
+
+	    span {
+	      position: relative;
+
+	       &::before, i {
+	          content: attr(data-addon);
+	          position: absolute;
+	          top: 0;
+	          left: 0;
+	          padding: 1.1em;
+	          font-size: 16px;
+	          color: $blue;
+	          z-index: 10;
+	      }
+	    }
+
+      input {
+        padding: 1em;
+        font-size: 16px;
+        display: block;
+        width: 100%;
+        border: 1px solid $grey;
+        outline: none;
+        position: relative;
+        color: $navy;
+        box-sizing: initial;
+        border-radius: 4px 0 0 4px;
+      }
+
+      input:focus {
+        border: 1px solid $blue;
+        z-index: 4;
+      }
+
+	    .results {
+	      	position: absolute;
+	      	width: 110%;
+	      	max-height: 300px;
+	      	background: rgba(white, 0.9);
+	      	z-index: 100;
+	      	overflow-y: scroll;
+
+	      	ul {
+
+	      		li {
+
+	      			&:hover {
+	      				background: $blue;
+	      				color: white;
+	      			}
+
+	      			a {
+	      				display: block;
+	      				padding: 0.5em 1em;
+	      				font-size: 0.9em;
+
+	      				img {
+	      					width: 40px;
+	      					border-radius: 50%;
+	      					vertical-align: middle;
+	      					margin-right: 1em;
+	      				}
+	      			}
+	      		}
+	      	}
+	      }
+		  }
+
+		  .extra-buttons {
+		    @extend .search-buttons;
+		    float: right!important;
+		    width: auto;
+
+		    a {
+
+		      &:hover {
+		        color: $blue!important;
+		      }
+
+		      &:first-child {
+		        border-radius: 4px 0 0 4px;
+		      }
+		    }
+
+		  }
+
+		  .search-buttons {
+		    float: left;
+		    margin-left: 2em;
+
+		    button, a {
+		      padding: 1.3em;
+		      position: relative;
+		      z-index: 1;
+		      float: left;
+		      background: white;
+		      outline: none;
+		      border: none;
+		      border-top: 1px solid $grey;
+		      border-bottom: 1px solid $grey;
+		      border-left: 1px solid $grey;
+		      font-size: 13px;
+		      font-weight: 400;
+		      color: $light-navy;
+		      cursor: pointer;
+		      transition: box-shadow 0.5s ease, color 0.2s ease;
+
+		      &:hover {
+		        box-shadow: 0 2px 8px 0px rgba(0,0,0,0.1);
+		        z-index: 2;
+		        color: $navy;
+		      }
+
+		      &.active {
+		        color: $blue;
+		        border: 1px solid $blue!important;
+		        box-shadow: 0 2px 8px 0px rgba(0,0,0,0.1);
+
+		        & > button {
+		          border-left: none;
+		        }
+
+		      }
+
+		      &:first-child {
+		        //border-radius: 4px 0 0 4px;
+		      }
+
+		      &:last-child{
+		        border-radius: 0 4px 4px 0;
+		        border-right: 1px solid $grey;
+		      }
+		    }
+		  }
+	}
+}
+
+.content {
+	position: relative;
+	margin-top: 10em;
+	padding: 0.5em 0.5em 2em;
+	@extend .clearfix;
+}
+
+
+#instafeed {
+	display: flex;
+  flex-wrap: wrap;
+
+	.image {
+		margin: 0.5em;
+		position: relative;
+		overflow: hidden;
+
+    // default
+		width: calc(100% / 4 - 1em);
+
+		@include xs-device {
+			width: calc(100% / 2 - 1em);
+		}
+
+		@include sm-device {
+			width: calc(100% / 3 - 1em);
+		}
+
+		@include md-device {
+			width: calc(100% / 4 - 1em);
+		}
+
+    @include lg-device {
+			width: calc(100% / 4 - 1em);
+		}
+
+		@include xl-device {
+			width: calc(100% / 5 - 1em);
+		}
+
+		img {
+			background-color: $light-blue;
+			margin-bottom: -2px;
+		}
+
+		.image-content {
+			position: relative;
+
+			&:hover {
+				.overlay {
+					opacity: 1;
+
+					li:last-child {
+						margin-left: 1em;
+					}
+				}
+			}
+		}
+
+		.action-buttons {
+			background: white;
+			margin-left: auto;
+
+			button {
+				outline: none;
+				background: white;
+				text-align: center;
+				border: none;
+				padding: 10px;
+				cursor: pointer;
+				font-size: 12px;
+				border: 1px solid #eee;
+				border-radius: 3px;
+
+				&:hover {
+					border-color: darken(#eee, 10%);
+				}
+
+				&:first-of-type {
+					margin-right: 5px;
+				}
+
+				i {
+					vertical-align: top;
+					margin-top: 2px;
+					color: #aaa;
+				}
+
+				&.like-button.liked {
+					color: $red;
+					border-color: $red;
+
+					i {
+						color: $red
+					}
+				}
+			}
+		}
+
+		.caption {
+			line-height: 1.5;
+			font-size: 0.8em;
+			padding: 1em;
+			background: white;
+			height: 100px;
+      margin: 0;
+
+			& > .user {
+				color: $blue;
+			}
+
+			& > .hashtag {
+				color: $light-blue;
+			}
+
+			& > a {
+				display: inline-block;
+				cursor: pointer;
+				font-weight: 400;
+
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+
+		.ellipsis {
+			color: #8f8f8f;
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			text-align: center;
+			padding: 0.5em 0;
+			cursor: pointer;
+			background-image: linear-gradient(top, rgba(white, 0.75), white);
+
+			&:hover {
+				color: #111;
+				background-image: linear-gradient(top, rgba(white, 0.85), white);
+			}
+		}
+
+		.image-info {
+			display: flex;
+			align-items: center;
+			font-size: 0.9em;
+			background: white;
+			padding: 0.75em;
+			font-weight: 400;
+			position: relative;
+			margin-top: -2px;
+			border-bottom: 1px solid #f0f0f0;
+			width: 100%;
+			overflow-y: scroll;
+			z-index: 11;
+			@extend .clearfix;
+			transition-delay: top 3s;
+
+			&:hover {
+				.username { color: $blue; }
+			}
+
+			.username {
+				color: $blue;
+				max-width: 45%;
+				text-overflow: ellipsis;
+				overflow: hidden;
+
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+
+		.video-icon, .liked-icon {
+			position: absolute;
+			top: 0;
+			color: white;
+			margin: 0.5em;
+			z-index: 10;
+		}
+
+		.liked-icon { right: 0 }
+		.video-icon {
+			left:  0;
+			font-size: 2em;
+			cursor: pointer;
+			text-shadow: 0 0 3px rgba(black, 0.3);
+			transition: all 0.35s ease;
+
+			&:hover {
+				text-shadow: 0 0 5px rgba(black, 0.5);
+			}
+		 }
+
+		.overlay {
+			position: absolute;
+			top: 0; left: 0;
+			background: rgba(white, 0.6);
+			width: 100%; height: 100%;
+			opacity: 0;
+			z-index: 9;
+			transition: all 0.35s ease-out;
+
+			ul.image-buttons {
+				position: absolute;
+				top: 50%; left: 50%;
+				transform: translate(-50%, -50%);
+
+				li {
+					transition: margin 0.35s ease;
+					display: inline-block;
+
+					&:last-child {
+						margin-left: 3em;
+					}
+
+					a {
+						color: $blue;
+						padding: 0.75em;
+						border: 1px solid;
+						border-radius: 50%;
+						transition: all 0.35s ease;
+						position: relative;
+						top: -20px;
+						z-index: 3;
+						cursor: pointer;
+						background: rgba(white, 0.4);
+
+
+						&:hover {
+							background: $blue;
+							color: white;
+							border: none;
+							@extend .hovershadow;
+						}
+
+						i {
+							vertical-align: middle;
+						}
+
+						&.liked {
+							background: $red;
+							color: white;
+							border: none;
+
+
+							&::before {
+								content: "";
+						        position: absolute;
+						        top: 50%; left: 50%;
+						        transform: translate(-50%, -50%);
+						        z-index: -1;
+						        background: transparent;
+						        border-radius: 50%;
+						        height: calc($size - 1px);
+						        width: calc($size - 1px);
+						        border: 1px solid $red;
+						        animation: pulse 1s ease;
+							}
+						}
+					}
+
+				}
+			}
+
+		}
+	}
+}
+
+$size: 1em;
+@keyframes pulse {
+  from { height: $size; width: $size; opacity: 1; }
+  to { height: $size * 5; width: $size * 5; opacity: 0; }
+}
+
+#profile {
+
+	text-align: center;
+	max-width: 400px;
+	line-height: 2;
+	margin: 0 auto;
+	padding: 1em 0;
+
+	img {
+		width: 100px;
+		border-radius: 50%;
+		border: 5px solid darken($bg, 8%);
+		display: block;
+		margin: 0 auto;
+	}
+
+	.username {
+		color: $blue;
+	}
+
+	.bio {
+		color: $navy;
+		font-size: 0.9em;
+	}
+
+	.website {
+		font-size: 0.8em;
+		color: darken($blue, 10%);
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	ul.media-info {
+
+		margin: 1em 0;
+
+		li {
+
+			display: inline-block;
+			//border: 1px solid #e3e3e3;
+			border-radius: 5px;
+			margin: 0 0.125em;
+			cursor: pointer;
+			transition: all 0.35s ease;
+
+			&:hover {
+				box-shadow: 0 2px 8px 0px rgba(0,0,0,0.1);
+			}
+
+			small, strong {
+				display: block;
+			}
+
+			small {
+				background: darken($blue, 10%);
+				color: white;
+				font-size: 0.7em;
+				padding: 0.25em 2em;
+				border-bottom: none;
+				border-radius: 5px 5px 0 0;
+			}
+
+			strong {
+				padding: 0.25em 1em;
+				background: #fbfbfb;
+				border-radius: 0 0 5px 5px;
+				font-weight: 300;
+
+			}
+		}
+	}
+}
+
+#users {
+
+	.user {
+		float: left;
+		width: calc(100% / 6);
+		text-align: center;
+		line-height: 2;
+		padding: 0 1em;
+
+		.user-content {
+			padding: 2em 0 1em;
+			background: white;
+			border-radius: 5px;
+		}
+
+		.user-image:hover img {
+			border-color: $blue;
+		}
+
+		img {
+			border-radius: 50%;
+			display: block;
+			margin: 0 auto;
+			width: 60px;
+			position: relative;
+			top: 30px;
+			border: 5px solid $bg;
+			transition: border 0.35s ease;
+		}
+
+		.username {
+			font-weight: 400;
+			margin-bottom: 1em;
+			display: block;
+
+			&:hover { color: $blue }
+		}
+	}
+
+}
+
+button.unfollow {
+	background: transparent;
+	display: block;
+	margin: 0 auto;
+	border: 1px solid $blue;
+	background: $blue;
+	color: white;
+	padding: 0.5em 2em;
+	border-radius: 5px;
+	cursor: pointer;
+
+	&:hover {
+		@extend .hovershadow;
+		background: lighten($blue, 5%);
+
+	}
+}
+
+button.follow {
+
+}
+
+.more-button {
+	display: block;
+	text-align: center;
+	width: 30%;
+	border-radius: 5px;
+	padding: 1.45em 0px;
+	background: $blue;
+	color: white!important;
+	margin: 1em auto 0;
+	cursor: pointer;
+	transition: all 0.25s ease;
+
+	&:hover {
+		background: $blue;
+		@extend .hovershadow;
+	}
+}
+
+.hovershadow {
+	box-shadow: 0 2px 8px 0px rgba(0,0,0,0.3);
+	transition: all 0.25s ease;
+}
+
+img {
+	width: 100%;
+	height: auto;
+}
+
+.hide { display: none }
+
+footer {
+	background: $navy;
+	// background: #2D69A5;
+	padding: 2em 0;
+	color: $light-navy;
+	text-align: center;
+	font-size: 1em;
+	line-height: 2;
+
+	h1 {
+		margin-bottom: 1em;
+	}
+
+	p, small {
+		line-height: 2;
+		font-size: 0.8em;
+		color: lighten($navy, 25%);
+
+		a {
+			color: lighten($navy, 35%)!important;
+			border-bottom: 1px dotted;
+
+			&:hover {
+				color: white!important;
+			}
+		}
+	}
+}
+
+
+body.overlay-layer {
+
+	&::before {
+		position: fixed;
+		content: ' ';
+		top: 0; right: 0;
+		bottom: 0; left: 0;
+		width: 100%; height: 100%;
+		opacity: 1; z-index: 10000000;
+		visibility: visible;
+		background: rgba(200, 200, 200,0.5);
+		transition: opacity 0.35s ease, visibility 0.35s ease;
+	}
+}
+
+.viewer-controls {
+
+	position: fixed;
+	top: 0; left: 0; right: 0; bottom: 0;
+	width: 100%; height: 100%;
+
+	.next-arrow,
+	.prev-arrow {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		font-size: 4em;
+		color: white;
+		margin: 0.25em;
+		opacity: 0.8;
+		z-index: 100000002;
+		text-shadow: 0 0 6px 0 rgba(black, 0.3);
+		cursor: pointer;
+
+		&:hover {
+			opacity: 1;
+		}
+	}
+
+	.next-arrow {
+		right: 0;
+	}
+
+	.prev-arrow {
+		left: 0;
+	}
+}
+
+#squareshot-viewer {
+	position: fixed;
+	z-index: 100000001;
+	visibility: hidden;
+	box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+
+	&.is-visible {
+		visibility: visible;
+	}
+
+	.viewer-image {
+		position: relative;
+
+		img {
+			width: 100%;
+		}
+
+	}
+
+}

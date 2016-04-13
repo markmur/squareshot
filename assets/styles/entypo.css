@@ -1,0 +1,140 @@
+@font-face {
+    font-family: 'entypo';
+    src:    url('../fonts/entypo.eot?ihi2my');
+    src:    url('../fonts/entypo.eot?ihi2my#iefix') format('embedded-opentype'),
+        url('../fonts/entypo.ttf?ihi2my') format('truetype'),
+        url('../fonts/entypo.woff?ihi2my') format('woff'),
+        url('../fonts/entypo.svg?ihi2my#entypo') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+i[class^="social-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'entypo' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.social-behance:before {
+    content: "\e900";
+}
+.social-dropbox:before {
+    content: "\e901";
+}
+.social-evernote:before {
+    content: "\e902";
+}
+.social-foursquare:before {
+    content: "\e903";
+}
+.social-google-drive:before {
+    content: "\e904";
+}
+.social-google-hangouts:before {
+    content: "\e905";
+}
+.social-paypal:before {
+    content: "\e906";
+}
+.social-skype-with-circle:before {
+    content: "\e907";
+}
+.social-skype:before {
+    content: "\e908";
+}
+.social-soundcloud:before {
+    content: "\e909";
+}
+.social-spotify-with-circle:before {
+    content: "\e90a";
+}
+.social-spotify:before {
+    content: "\e90b";
+}
+.social-dribbble-with-circle:before {
+    content: "\e90c";
+}
+.social-dribbble:before {
+    content: "\e90d";
+}
+.social-facebook-with-circle:before {
+    content: "\e90e";
+}
+.social-facebook:before {
+    content: "\e90f";
+}
+.social-flickr-with-circle:before {
+    content: "\e910";
+}
+.social-flickr:before {
+    content: "\e911";
+}
+.social-github-with-circle:before {
+    content: "\e912";
+}
+.social-github:before {
+    content: "\e913";
+}
+.social-google-with-circle:before {
+    content: "\e914";
+}
+.social-google:before {
+    content: "\e915";
+}
+.social-instagram-with-circle:before {
+    content: "\e916";
+}
+.social-instagram:before {
+    content: "\e917";
+}
+.social-linkedin-with-circle:before {
+    content: "\e918";
+}
+.social-linkedin:before {
+    content: "\e919";
+}
+.social-pinterest-with-circle:before {
+    content: "\e91a";
+}
+.social-pinterest:before {
+    content: "\e91b";
+}
+.social-stumbleupon-with-circle:before {
+    content: "\e91c";
+}
+.social-stumbleupon:before {
+    content: "\e91d";
+}
+.social-tumblr-with-circle:before {
+    content: "\e91e";
+}
+.social-tumblr:before {
+    content: "\e91f";
+}
+.social-twitter-with-circle:before {
+    content: "\e920";
+}
+.social-twitter:before {
+    content: "\e921";
+}
+.social-vimeo-with-circle:before {
+    content: "\e922";
+}
+.social-vimeo:before {
+    content: "\e923";
+}
+.social-youtube-with-circle:before {
+    content: "\e924";
+}
+.social-youtube:before {
+    content: "\e925";
+}
