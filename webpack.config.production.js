@@ -18,6 +18,10 @@ config.output = {
   filename: 'bundle.[hash].min.js',
 };
 
+config.resolveLoader = {
+  root: path.join(__dirname, 'node_modules'),
+};
+
 config.plugins = config.plugins.concat([
   new webpack.optimize.OccurenceOrderPlugin(true),
   new webpack.optimize.DedupePlugin(),
@@ -46,6 +50,6 @@ config.module.loaders = config.module.loaders.concat([{
   exclude: /node_modules/,
   loaders: ['babel?presets[]=es2015,presets[]=stage-0,presets[]=react'],
   include: path.join(__dirname, 'assets'),
-}, ]);
+},]);
 
 module.exports = config;
