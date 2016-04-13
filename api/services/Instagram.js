@@ -1,7 +1,6 @@
 const request = require('request');
 const url = require('url');
 const colors = require('colors');
-const locals = require('../../locals.js');
 
 module.exports = {
 
@@ -9,7 +8,7 @@ module.exports = {
     protocol: 'https:',
     host: 'api.instagram.com',
     query: {
-      client_id: locals.client_id,
+      client_id: sails.config.client_id,
       count: 32,
     },
   },

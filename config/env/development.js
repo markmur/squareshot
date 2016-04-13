@@ -10,6 +10,8 @@
  *
  */
 
+const locals = require('../../locals');
+
 module.exports.port = 3000;
 
 module.exports.session = {
@@ -24,4 +26,10 @@ module.exports.session = {
   port: 27017,
   db: 'squareshot',
   collection: 'sessions',
+};
+
+module.exports = {
+  client_id: locals.client_id,
+  client_secret: locals.client_secret,
+  redirect_uri: locals.redirect_uri,
 };

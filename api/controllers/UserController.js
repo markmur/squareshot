@@ -1,6 +1,5 @@
 const request = require('request');
 const URL     = require('url');
-const locals  = require('../../locals.js');
 
 module.exports = {
 
@@ -22,10 +21,10 @@ module.exports = {
   auth: function (req, res) {
 
     var data = {
-      client_secret: locals.client_secret,
-      client_id: locals.client_id,
+      client_secret: sails.config.client_secret,
+      client_id: sails.config.client_id,
       grant_type: 'authorization_code',
-      redirect_uri: locals.redirect_uri,
+      redirect_uri: sails.config.redirect_uri,
       code: req.query.code,
       scope: 'likes+comments+relationships',
     };
