@@ -14,6 +14,10 @@ const locals = require('../../locals');
 
 module.exports.port = 3000;
 
+module.exports.paths = {
+  public: 'dist/',
+};
+
 module.exports.session = {
   secret: '451af640c5207f55e4c64635bda23492',
 
