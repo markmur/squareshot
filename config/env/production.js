@@ -14,7 +14,7 @@ module.exports = {
   port: 3000,
 
   grunt: {
-    _hookTimeout: 30 * 1000,
+    _hookTimeout: 120 * 1000,
   },
 
   session: {
