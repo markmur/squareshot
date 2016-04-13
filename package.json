@@ -20,7 +20,7 @@
     "babel-loader": "^6.2.4",
     "babel-polyfill": "^6.7.4",
     "babel-runtime": "^6.6.1",
-    "connect-mongo": "^1.1.0",
+    "connect-mongo": "^0.8.2",
     "connect-redis": "^3.0.2",
     "ejs": "2.3.4",
     "express-jwt": "^3.3.0",
@@ -45,6 +45,7 @@
     "request": "^2.69.0",
     "sails": "^0.12.2",
     "sails-disk": "~0.10.9",
+    "sails-mongo": "^0.12.0",
     "url": "^0.11.0",
     "webpack": "^1.12.14"
   },

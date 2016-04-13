@@ -10,22 +10,18 @@
  *
  */
 
-module.exports = {
+module.exports.port = 3000;
 
-  session: {
-    secret: '451af640c5207f55e4c64635bda23492',
+module.exports.session = {
+  secret: '451af640c5207f55e4c64635bda23492',
 
-    cookie: {
-      maxAge: 24 * 60 * 60 * 1000,
-    },
-
-    adapter: 'mongo',
-    host: 'localhost',
-    port: 27017,
-    db: 'squareshot',
-    collection: 'sessions',
+  cookie: {
+    maxAge: 24 * 60 * 60 * 1000,
   },
 
-  port: 3000,
-
+  adapter: 'mongo',
+  host: 'localhost',
+  port: 27017,
+  db: 'squareshot',
+  collection: 'sessions',
 };

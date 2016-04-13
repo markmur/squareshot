@@ -60,6 +60,12 @@ module.exports = {
         test: /\.(ttf|eot|svg|woff)(\?[a-z0-9]+)?$/, // fonts files
         loader: 'file-loader?limit=100000',
       },
+      {
+        test: /\.jsx?$/, // react files
+        exclude: /node_modules/,
+        loaders: ['react-hot', 'babel?presets[]=es2015,presets[]=stage-0,presets[]=react'],
+        include: path.join(__dirname, 'assets'),
+      },
     ],
 
     noParse: /\.min\.js/,
