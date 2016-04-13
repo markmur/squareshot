@@ -1,6 +1,7 @@
 'use strict';
 
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 var config = require('./webpack.config.base.js');
 
 var SaveAssetsJson = require('assets-webpack-plugin');
@@ -39,5 +40,12 @@ config.plugins = config.plugins.concat([
     },
   }),
 ]);
+
+config.module.loaders = config.module.loaders.concat([{
+  test: /\.jsx?$/, // react files
+  exclude: /node_modules/,
+  loaders: ['react-hot', 'babel?presets[]=es2015,presets[]=stage-0,presets[]=react'],
+  include: path.join(__dirname, 'assets'),
+}, ]);
 
 module.exports = config;
