@@ -19,7 +19,7 @@ module.exports.paths = {
 };
 
 module.exports.session = {
-  secret: '451af640c5207f55e4c64635bda23492',
+  secret: locals.session_secret,
 
   cookie: {
     maxAge: 24 * 60 * 60 * 1000,

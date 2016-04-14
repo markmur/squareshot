@@ -23,7 +23,7 @@ module.exports = {
   ],
 
   output: {
-    path: path.join(__dirname, '.tmp/public'),
+    path: path.join(__dirname, '.tmp/public/dist/'),
     filename: 'bundle.js',
     pathInfo: true,
     publicPath: 'http://localhost:8080/',

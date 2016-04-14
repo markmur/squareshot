@@ -10,25 +10,27 @@
  *
  */
 
+const locals = require('../../locals');
+
 module.exports = {
-  port: process.env.PORT || 3000,
+  port: 3000,
 
   grunt: {
     _hookTimeout: 120 * 1000,
   },
 
   session: {
-    secret: process.env.SESSION_SECRET,
+    secret: locals.session_secret,
     adapter: 'mongo',
-    url: process.env.MONGO_URI,
+    url: locals.mongo_uri,
     collection: 'sessions',
   },
 
   log: {
-    level: 'silent',
+    level: 'verbose',
   },
 
-  client_id: process.env.CLIENT_ID,
-  client_secret: process.env.CLIENT_SECRET,
-  redirect_uri: process.env.REDIRECT_URI,
+  client_id: locals.client_id,
+  client_secret: locals.client_secret,
+  redirect_uri: locals.redirect_uri,
 };
