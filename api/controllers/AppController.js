@@ -3,7 +3,7 @@ module.exports = {
 
     console.log(__dirname);
 
-    return res.view('app/index.ejs', {
+    return res.view('index.ejs', {
       bundle: require('../../assets.json').main.js,
       user: req.session.user,
     });

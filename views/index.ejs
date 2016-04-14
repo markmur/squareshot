@@ -1,3 +1,6 @@
-<a href="/user/auth">Login</a>
-
-Hello <%= user %>
+<div id="app"></div>
+<% if (sails.config.environment === 'development') { %>
+    <script src="http://localhost:8080/dist/bundle.js"></script>
+<% } else { %>
+    <script src="/dist<%= bundle %>"></script>
+<% } %>
