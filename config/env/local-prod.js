@@ -27,7 +27,7 @@ module.exports = {
   },
 
   log: {
-    level: 'verbose',
+    level: 'info',
   },
 
   client_id: locals.client_id,

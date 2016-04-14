@@ -14,7 +14,7 @@ config.devtool = '#source-map';
 config.output = {
   path: '.tmp/public/dist/',
   pathInfo: true,
-  publicPath: '/',
+  publicPath: '/dist/',
   filename: 'bundle.[hash].min.js',
 };
 
@@ -50,6 +50,6 @@ config.module.loaders = config.module.loaders.concat([{
   exclude: /node_modules/,
   loaders: ['babel?presets[]=es2015,presets[]=stage-0,presets[]=react'],
   include: path.join(__dirname, 'assets'),
-},]);
+}, ]);
 
 module.exports = config;

@@ -58,7 +58,7 @@ module.exports = {
       },
       {
         test: /\.(ttf|eot|svg|woff)(\?[a-z0-9]+)?$/, // fonts files
-        loader: 'file-loader?limit=100000',
+        loader: 'file-loader?name=[path][name].[ext]',
       },
       {
         test: /\.jsx?$/, // react files
