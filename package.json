@@ -55,7 +55,7 @@
     "test": "jest",
     "coverage": "jest --coverage",
     "dev": "webpack-dev-server --hot --inline",
-    "dist": "NODE_ENV=production webpack -p --progress",
+    "dist": "NODE_ENV=production webpack -p",
     "postinstall": "npm run dist"
   },
   "main": "app.js",
