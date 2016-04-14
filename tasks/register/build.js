@@ -1,27 +1,28 @@
 /**
- * `build`
+ * `buildProd`
  *
  * ---------------------------------------------------------------
  *
- * This Grunt tasklist will be executed if you run `sails www` or
- * `grunt build` in a development environment.  It generates a
- * folder containing your compiled assets, e.g. for troubleshooting
- * issues with other Grunt plugins, bundling assets for an Electron
- * or PhoneGap app, or deploying your app's flat files to a CDN.
+ * This Grunt tasklist will be executed instead of `build` if you
+ * run `sails www` in a production environment, e.g.:
+ * `NODE_ENV=production sails www`
  *
- * Note that when running `sails www` in a production environment (with the
- * `NODE_ENV` environment variable set to 'production') the `buildProd` task
- * will be run instead of this one.
+ * This generates a folder containing your compiled (and usually minified)
+ * assets.  The most common use case for this is bundling up files to
+ * deploy to a CDN.
  *
  * For more information see:
- *   http://sailsjs.org/documentation/anatomy/my-app/tasks/register/build-js
+ *   http://sailsjs.org/documentation/anatomy/my-app/tasks/register/build-prod-js
  *
  */
-module.exports = function(grunt) {
+module.exports = function (grunt) {
   grunt.registerTask('build', [
-    'compileAssets',
-    'linkAssetsBuild',
+    'exec:webpackBuild',
+    'concat',
+    'uglify',
+    'cssmin',
+    'linkAssetsBuildProd',
     'clean:build',
-    'copy:build'
+    'copy:build',
   ]);
 };
