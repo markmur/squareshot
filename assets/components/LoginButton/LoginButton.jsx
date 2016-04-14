@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import $ from 'jQuery';
+import $ from 'jquery';
 import URL from 'url';
 
 class LoginButton extends Component {
@@ -14,11 +14,11 @@ class LoginButton extends Component {
       protocol: 'https:',
       host: 'api.instagram.com/oauth/authorize',
       query: {
-        'client_id': 'dcb4dc592b6e442db2f296e166fe375b',
-        'redirect_uri': 'http://localhost:3000/user/auth',
-        'response_type': 'code',
-        'scope': 'likes+comments+relationships'
-      }
+        client_id: 'dcb4dc592b6e442db2f296e166fe375b',
+        redirect_uri: 'http://localhost:3000/user/auth',
+        response_type: 'code',
+        scope: 'likes+comments+relationships',
+      },
     };
 
     window.location = URL.format(options);

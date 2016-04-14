@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import InstagramPhoto from 'components/InstagramPhoto/InstagramPhoto';
 import Utils from 'utils';
-import $ from 'jQuery';
+import $ from 'jquery';
 import Loader from 'components/Loader/Loader';
 
 export default class InstagramPhotos extends Component {
