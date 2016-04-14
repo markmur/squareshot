@@ -2,8 +2,7 @@
 
 var compileAssets = [
     'clean:dev',
-    'jst:dev',
-    'copy:dev',
+    'copy',
 ];
 
 if (process.env.NODE_ENV === 'development') {
