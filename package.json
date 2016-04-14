@@ -50,12 +50,13 @@
     "webpack": "^1.12.14"
   },
   "scripts": {
-    "start": "nodemon index",
+    "start": "node app",
     "debug": "node debug app",
     "test": "jest",
     "coverage": "jest --coverage",
     "dev": "webpack-dev-server --hot --inline",
-    "dist": "NODE_ENV=production webpack -p --progress"
+    "dist": "NODE_ENV=production webpack -p --progress",
+    "postinstall": "npm run dist"
   },
   "main": "app.js",
   "repository": {
