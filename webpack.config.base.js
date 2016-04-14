@@ -57,7 +57,7 @@ module.exports = {
         loader: 'style!css!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded',
       },
       {
-        test: /\.(ttf|eot|svg|woff)(\?[a-z0-9]+)?$/, // fonts files
+        test: /([a-z0-9]+)\.(ttf|eot|svg|woff)$/, // fonts files
         loader: 'file-loader?limit=100000',
       },
       {

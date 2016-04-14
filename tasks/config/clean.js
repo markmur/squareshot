@@ -16,7 +16,7 @@ module.exports = function (grunt) {
     dev: ['.tmp/public/**'],
     prod: [
       '.tmp/public/**/*',
-      '!.tmp/public/dist/**',
+      '!.tmp/public/dist/**', // Important not to wipe the dist folder that webpack generates
     ],
     build: ['www'],
   });
