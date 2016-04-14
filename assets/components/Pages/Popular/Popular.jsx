@@ -18,7 +18,6 @@ class Popular extends Component {
     fetch('/photo/popular')
       .then(Utils.getJSON)
       .then(res => {
-        console.log(res);
         this.setState({
           photos: res.data,
           pagination: res.pagination || {},
@@ -31,7 +30,6 @@ class Popular extends Component {
   }
 
   componentWillReceiveProps(props) {
-    console.log('Component received some new props!', props);
     this.setState({ photos: [] });
     this.getPopular();
   }
