@@ -25,7 +25,7 @@ module.exports = {
   },
 
   log: {
-    level: 'silent',
+    level: 'verbose',
   },
 
   client_id: process.env.CLIENT_ID,
