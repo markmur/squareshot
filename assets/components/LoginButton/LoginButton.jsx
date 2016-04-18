@@ -12,12 +12,12 @@ class LoginButton extends Component {
 
     var options = {
       protocol: 'https:',
-      host: 'api.instagram.com/oauth/authorize',
+      host: 'api.instagram.com/oauth/authorize/',
       query: {
         client_id: 'dcb4dc592b6e442db2f296e166fe375b',
-        redirect_uri: 'http://localhost:3000/user/auth',
+        redirect_uri: `${window.location.origin}/user/auth`,
         response_type: 'code',
-        scope: 'likes+comments+relationships',
+        scope: ['likes', 'comments', 'relationships'],
       },
     };
 
@@ -27,7 +27,7 @@ class LoginButton extends Component {
   render() {
     return (
       <div id="login">
-        <a href="https://api.instagram.com/oauth/authorize/?client_id=dcb4dc592b6e442db2f296e166fe375b&redirect_uri=http://localhost:3000/user/auth&response_type=code&scope=likes+comments+relationships">
+        <a type="button" onClick={this.login.bind(this)}>
           <i className="social-instagram"></i>
           Login with Instagram
         </a>
