@@ -2,22 +2,22 @@ import 'styles/main.scss';
 
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, Link, hashHistory, browserHistory, IndexRoute } from 'react-router';
+import { Router, Route, Link, hashHistory, browserHistory, IndexRoute, IndexRedirect } from 'react-router';
 
-import Popular from 'components/Pages/Popular/Popular';
-import Feed from 'components/Pages/Feed/Feed';
-import UserProfile from 'components/Pages/UserProfile/UserProfile';
-import Profile from 'components/Pages/Profile/Profile';
-import Hashtag from 'components/Pages/Hashtag/Hashtag';
+import App from 'components/App/App';
+import PhotosPage from 'components/Pages/PhotosPage/PhotosPage';
 import NotFound from 'components/NotFound/NotFound';
 
 render(
-  <Router history={hashHistory}>
-    <Route path="/" component={Popular}></Route>
-    <Route path="/popular" component={Popular}></Route>
-    <Route path="/user/:username" component={UserProfile}></Route>
-    <Route path="/hashtag/:hashtag" component={Hashtag}></Route>
-    <Route path="/profile" component={Profile}></Route>
+  <Router history={browserHistory}>
+    <Route path="/" component={App}>
+      <IndexRedirect to="/popular" />
+      <Route path="popular" component={PhotosPage} />
+      <Route path="feed" component={PhotosPage} />
+      <Route path="hashtag/:hashtag" component={PhotosPage} />
+      <Route path="user/:username" component={PhotosPage} />
+      <Route path="profile" component={PhotosPage} />
+    </Route>
+
     <Route path="/*" component={NotFound}></Route>
-    <Route path="/feed" component={Feed}></Route>
   </Router>, document.getElementById('app'));

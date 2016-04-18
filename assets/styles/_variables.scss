@@ -1,24 +1,16 @@
-$bg:          #f0f1f3;
-$blue:        #0087ff;
-$light-blue:  lighten($blue, 10%);
-$navy:        #4e5b68;
-$light-navy:  lighten($navy, 40%);
-$grey:        darken($bg, 5%);
-$purple:      #9b59b6;
-$red:         #c0392b;
-
-
+$bg: #f0f1f3;
+$blue: #0087ff;
+$light-blue: lighten($blue, 10%);
+$navy: #4e5b68;
+$light-navy: lighten($navy, 40%);
+$grey: darken($bg, 5%);
+$purple: #9b59b6;
+$red: #c0392b;
+$light-grey: #BFC7C5;
+$font-stack: Roboto, 'Helvetica Neue', Helvetica, sans-serif;
 /// Extra Small devices
-$xs-device: 767px;
-
-/// Small Devices
-$sm-device: 768px;
-
-/// Medium Devices
-$md-device: 992px;
-
-/// Large Devices
-$lg-device: 1200px;
-
-/// XL devices
+$xs-device: 767px; /// Small Devices
+$sm-device: 768px; /// Medium Devices
+$md-device: 992px; /// Large Devices
+$lg-device: 1200px; /// XL devices
 $xl-device: 1441px;

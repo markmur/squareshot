@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import Numeral from 'numeral';
 
+import LikeButton from 'components/LikeButton/LikeButton';
+
 class InstagramPhoto extends Component {
 
   constructor(props) {
@@ -23,11 +25,6 @@ class InstagramPhoto extends Component {
     return <p class='caption'>{caption}</p>;
   }
 
-  like(event) {
-    event.currentTarget.classList.toggle('liked');
-    return this;
-  }
-
   render() {
     var photo = this.props.photo;
     var caption;
@@ -45,9 +42,7 @@ class InstagramPhoto extends Component {
             @{photo.user.username}
           </Link>
           <div class="action-buttons">
-            <button class="like-button" onClick={this.like.bind(this)}>
-              <i class="icon-heart"></i> {Numeral(photo.likes.count).format('0[.]0a')}
-            </button>
+            <LikeButton likes={photo.likes.count} id={photo.id}/>
 
             <button class="comments-button">
               <i class="icon-speech-bubble"></i> {Numeral(photo.comments.count).format('0[.]0a')}

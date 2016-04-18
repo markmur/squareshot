@@ -1,0 +1,17 @@
+.example-enter {
+  height: 0;
+}
+
+.example-enter.example-enter-active {
+  height: 100%;
+  transition: height 0.1s ease;
+}
+
+.example-leave {
+  height: 100%;
+}
+
+.example-leave.example-leave-active {
+  height: 0;
+  transition: height 0.1s ease-out;
+}

@@ -1,33 +1,68 @@
 /// Target extra-small devices
 @mixin xs-device {
-  @media (max-width: $xs-device) { @content; }
+   @media (max-width: $xs-device){
+    @content;
+  }
 }
+@mixin button {
+  color: darken(#b8c1ca, 15%);
+  border: 1px solid #e2e4e8;
+  transition: box-shadow 0.5s ease, color 0.2s ease;
+  outline: none;
 
+  &:hover {
+    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
+  }
+}
 /// Target small devices
 @mixin sm-device {
-  @media (min-width: $sm-device) and (max-width: $md-device) { @content; }
+   @media (min-width: $sm-device) and (max-width: $md-device){
+    @content;
+  }
 }
-
 /// Target medium size devices
 @mixin md-device {
-  @media (min-width: $md-device) and (max-width: $lg-device) { @content; }
+   @media (min-width: $md-device) and (max-width: $lg-device){
+    @content;
+  }
 }
-
 /// Target large devices
 @mixin lg-device {
-  @media (min-width: $lg-device) and (max-width: $xl-device) { @content; }
+   @media (min-width: $lg-device) and (max-width: $xl-device){
+    @content;
+  }
 }
-
 /// Target large devices
 @mixin xl-device {
-  @media (min-width: $xl-device) { @content; }
+   @media (min-width: $xl-device){
+    @content;
+  }
 }
-
 /// Target multiple devices at once
 @mixin devices($xs: false, $sm: false, $md: false, $lg: false, $xl: false) {
-  @if $xs == true { @include xs-device { @content; }}
-  @if $sm == true { @include sm-device { @content; }}
-  @if $md == true { @include md-device { @content; }}
-  @if $lg == true { @include lg-device { @content; }}
-  @if $xl == true { @include xl-device { @content; }}
+   @if $xs == true{
+    @include xs-device {
+       @content;
+    }
+  }
+  @if $sm == true {
+     @include sm-device{
+      @content;
+    }
+  }
+  @if $md == true {
+     @include md-device{
+      @content;
+    }
+  }
+  @if $lg == true {
+     @include lg-device{
+      @content;
+    }
+  }
+  @if $xl == true {
+     @include xl-device{
+      @content;
+    }
+  }
 }

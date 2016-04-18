@@ -21,7 +21,15 @@
  */
 
 module.exports.routes = {
-  '/': 'AppController.index',
-  '/photo/user/:username': 'PhotoController.user',
-  '/photo/hashtag/:hashtag':  'PhotoController.hashtag',
+  '/':                          'AppController.index',
+  '/popular':                   'AppController.index',
+  '/feed':                      'AppController.index',
+  '/photo/user/:username':      'PhotoController.user',
+  '/photo/hashtag/:hashtag':    'PhotoController.hashtag',
+  'POST /photo/like':           'PhotoController.like',
+
+  '/user/index':                'UserController.index',
+  '/user/auth':                 'UserController.auth',
+  '/user/logout':               'UserController.logout',
+  '/user/:username':            'AppController.index',
 };

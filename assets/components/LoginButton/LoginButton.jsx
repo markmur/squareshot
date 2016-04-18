@@ -26,10 +26,12 @@ class LoginButton extends Component {
 
   render() {
     return (
-      <a href="https://api.instagram.com/oauth/authorize/?client_id=dcb4dc592b6e442db2f296e166fe375b&redirect_uri=http://localhost:3000/user/auth&response_type=code&scope=likes+comments+relationships">
-        <i className="social-instagram"></i>
-        Login with Instagram
-      </a>
+      <div id="login">
+        <a href="https://api.instagram.com/oauth/authorize/?client_id=dcb4dc592b6e442db2f296e166fe375b&redirect_uri=http://localhost:3000/user/auth&response_type=code&scope=likes+comments+relationships">
+          <i className="social-instagram"></i>
+          Login with Instagram
+        </a>
+      </div>
     );
   }
 }

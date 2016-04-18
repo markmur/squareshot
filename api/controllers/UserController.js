@@ -4,17 +4,9 @@ const URL     = require('url');
 module.exports = {
 
   index: function (req, res) {
-
-    var isAuthenticated = req.session.authenticated || false;
-    var user;
-
-    if (isAuthenticated) {
-      user = req.session.user;
-    }
-
     return res.send({
-      user: user,
-      isLoggedIn: isAuthenticated,
+      user: req.session.user,
+      authenticated: typeof req.session.user !== 'undefined',
     });
   },
 
@@ -40,17 +32,11 @@ module.exports = {
     var currentRoute = req.route.path;
 
     request.post(options, function (err, response, body) {
-      if (err) {
-        return res.serverError(err);
-      }
+      if (err) return res.serverError(err);
 
       body = JSON.parse(body);
 
-      if (body.code >= 400) {
-        return res.serverError(body.error_message);
-      }
-
-      sails.log.info('Instagram Response ::', body);
+      if (body.code >= 400) return res.serverError(body.error_message);
 
       var token = body.access_token;
       var user = body.user;
@@ -58,14 +44,12 @@ module.exports = {
       req.session.token = token;
       req.session.user = user;
 
-      return res.redirect('/');
+      return res.redirect('/feed');
     });
   },
 
   logout: function (req, res) {
     req.session.destroy();
-    return res.send({
-      loggedOut: true,
-    });
+    return res.redirect('/');
   },
 };

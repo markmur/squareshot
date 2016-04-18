@@ -1,16 +1,18 @@
 var findUser = function findUser(username) {
   return Instagram.searchUsers(username)
-		.then(res => {
-  var users = res.data;
-  return _.find(users, { username: username });
-		})
-		.catch(err => console.warn(err));
+    .then(res => {
+      var users = res.data;
+      return _.find(users, {
+        username: username,
+      });
+    })
+    .catch(err => console.warn(err));
 };
 
 var getUser = function getUser(id) {
   return Promise.all([
-  Instagram.findUser(id),
-  Instagram.user(id),
+    Instagram.findUser(id),
+    Instagram.user(id),
   ]);
 };
 
@@ -39,18 +41,24 @@ module.exports = {
 
   feed: function (req, res) {
     var user = req.session.user;
-
-    console.log('Here is the session', req.session);
-
-    Instagram.feed(req.session.token).then(photos => {
-      res.send(photos);
+    Instagram.feed(req.session.token).then(data => {
+      res.send(data);
     });
   },
 
   hashtag: function (req, res) {
     Instagram.hashtag(req.params.hashtag).then(response => {
-      console.log(req.params);
       res.send(response);
+    });
+  },
+
+  like: function (req, res) {
+    Instagram.like(req.param('id'), req.session.token).then(response => {
+      return res.ok();
+    }, err => {
+
+      console.log(err);
+      return res.serverError(err);
     });
   },
 
@@ -69,29 +77,34 @@ module.exports = {
 
     if (id) {
       getUser(user.id).then(array => {
+        console.log('get');
         return res.send({
           user: array[0].data,
-          photos: array[1].data,
+          data: array[1].data,
         });
       });
     } else {
 
       Instagram.searchUsers(username)
-				.then(response => {
-  var users = response.data;
-  var user = _.find(users, { username: username });
+        .then(response => {
+          var users = response.data;
+          var user = _.find(users, {
+            username: username,
+          });
 
-  sails.log.info('User ::', user);
+          sails.log.info('User ::', user);
 
-  if (!user) return res.notFound('User not found');
+          if (!user) return res.notFound('User not found');
 
-  getUser(user.id).then(array => {
-    return res.send({
-      user: array[0].data,
-      photos: array[1].data,
-    });
-  });
-				}).catch(err => { throw err; });
+          getUser(user.id).then(array => {
+            return res.send({
+              user: array[0].data,
+              data: array[1].data,
+            });
+          });
+        }).catch(err => {
+          throw err;
+        });
     }
   },
 };

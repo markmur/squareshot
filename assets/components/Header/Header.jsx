@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import LoginButton from 'components/LoginButton/LoginButton';
 import Navigation from 'components/Navigation/Navigation';
+import AuthenticatedUser from 'components/AuthenticatedUser/AuthenticatedUser';
 
 class Header extends Component {
 
@@ -10,8 +11,17 @@ class Header extends Component {
   }
 
   render() {
-
     var current = this.props.current ? this.props.current.trim() : null;
+
+    var { authenticated, user } = this.props;
+
+    var loginState;
+
+    if (authenticated) {
+      loginState = <AuthenticatedUser user={user} />;
+    } else {
+      loginState = <LoginButton />;
+    }
 
     return (
       <header>
@@ -22,9 +32,8 @@ class Header extends Component {
           <div id="logo">
             <Link to="/">{current}</Link>
           </div>
-          <div id="login">
-        		<LoginButton />
-        	</div>
+
+        	{loginState}
         </main>
         <Navigation />
       </header>

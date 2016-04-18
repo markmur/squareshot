@@ -15,7 +15,7 @@ export default class Navigation extends Component {
         <Search />
         <div className="extra-buttons">
           <Link to="/">Popular</Link>
-          <Link to="feed">Feed</Link>
+          <Link to="/feed">Feed</Link>
         </div>
       </nav>
     );

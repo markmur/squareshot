@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
-import Utils from 'utils';
 import _ from 'lodash';
 
 export default class Search extends Component {
@@ -31,8 +30,7 @@ export default class Search extends Component {
 
     this.timeout = setTimeout(() => {
       console.info(`Searching for ${value}`);
-      fetch(`/photo/search?${query}=${value}`).then(Utils.getJSON).then(res => {
-        console.log(res);
+      io.socket.get(`/photo/search?${query}=${value}`, res => {
         this.setState({ results: res.data });
       });
     }, 300);
