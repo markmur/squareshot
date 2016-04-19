@@ -2,7 +2,6 @@ export default {
 
   isLoggedIn: function (done) {
     io.socket.get('/user/index', res => {
-      console.log('isLoggedIn?', res);
       done(res);
     });
   },

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+
+import Settings from 'services/settings';
 import Search from 'components/Search/Search';
-import ToggleButton from 'components/ToggleButton/ToggleButton';
+import Toggle from 'components/Toggle/Toggle';
 
 export default class Navigation extends Component {
 
@@ -17,6 +19,7 @@ export default class Navigation extends Component {
           <Link to="/">Popular</Link>
           <Link to="/feed">Feed</Link>
         </div>
+      {/* <Toggle checked={Settings.captionsHidden()} onChange={Settings.toggleCaptions} /> */}
       </nav>
     );
   }

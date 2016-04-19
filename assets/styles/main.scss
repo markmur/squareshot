@@ -257,6 +257,7 @@ header {
 
       ul {
         position: absolute;
+        z-index: 2;
         top: calc(100% + 0px);
         right: -1px;
         background: white;
@@ -497,14 +498,15 @@ header {
     overflow: hidden;
     // default
     width: calc(100% / 4 - 1em);
+
     @include xs-device {
-      width: calc(100% / 2 - 1em);
+      width: calc(100% - 1em);
     }
     @include sm-device {
-      width: calc(100% / 3 - 1em);
+      width: calc(100% / 2 - 1em);
     }
     @include md-device {
-      width: calc(100% / 4 - 1em);
+      width: calc(100% / 3 - 1em);
     }
     @include lg-device {
       width: calc(100% / 4 - 1em);

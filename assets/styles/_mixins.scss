@@ -1,9 +1,3 @@
-/// Target extra-small devices
-@mixin xs-device {
-   @media (max-width: $xs-device){
-    @content;
-  }
-}
 @mixin button {
   color: darken(#b8c1ca, 15%);
   border: 1px solid #e2e4e8;
@@ -14,9 +8,16 @@
     box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
   }
 }
+
+/// Target extra-small devices
+@mixin xs-device {
+   @media (max-width: $sm-device){
+    @content;
+  }
+}
 /// Target small devices
 @mixin sm-device {
-   @media (min-width: $sm-device) and (max-width: $md-device){
+   @media (min-width: $xs-device) and (max-width: $md-device){
     @content;
   }
 }

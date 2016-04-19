@@ -8,9 +8,10 @@ $purple: #9b59b6;
 $red: #c0392b;
 $light-grey: #BFC7C5;
 $font-stack: Roboto, 'Helvetica Neue', Helvetica, sans-serif;
-/// Extra Small devices
-$xs-device: 767px; /// Small Devices
-$sm-device: 768px; /// Medium Devices
-$md-device: 992px; /// Large Devices
-$lg-device: 1200px; /// XL devices
+
+
+$xs-device: 420px;
+$sm-device: 420px;
+$md-device: 992px;
+$lg-device: 1200px;
 $xl-device: 1441px;

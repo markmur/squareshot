@@ -21,15 +21,22 @@
  */
 
 module.exports.routes = {
-  '/':                          'AppController.index',
-  '/popular':                   'AppController.index',
-  '/feed':                      'AppController.index',
+
+  // PhotoController
+  '/photo/popular':             'PhotoController.popular',
+  '/photo/feed':                'PhotoController.feed',
   '/photo/user/:username':      'PhotoController.user',
   '/photo/hashtag/:hashtag':    'PhotoController.hashtag',
-  'POST /photo/like':           'PhotoController.like',
 
+  // UserController
   '/user/index':                'UserController.index',
   '/user/auth':                 'UserController.auth',
   '/user/logout':               'UserController.logout',
-  '/user/:username':            'AppController.index',
+
+  // All other routes
+  '/*': {
+    skipAssets: true,
+    controller: 'App',
+    action: 'index',
+  },
 };

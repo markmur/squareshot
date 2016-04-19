@@ -30,6 +30,7 @@ module.exports.http = {
     *                                                                          *
     ***************************************************************************/
     order: [
+      'responseTimeLogger',
       'startRequestTimer',
       'cookieParser',
       'session',
@@ -60,12 +61,14 @@ module.exports.http = {
     // }
 
     responseTimeLogger: function (req, res, next) {
+      var start = Date.now();
       res.on('finish', function () {
-        sails.log.info('Requested :: ', req.method, req.url, res.get('X-Response-Time'));
+        var duration = Date.now() - start;
+        sails.log.debug('Response Time ::', duration);
       });
 
-      require('response-time')()(req, res, next);
-    }
+      next();
+    },
 
     /***************************************************************************
     *                                                                          *
