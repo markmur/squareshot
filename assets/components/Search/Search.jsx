@@ -31,6 +31,7 @@ export default class Search extends Component {
     this.timeout = setTimeout(() => {
       console.info(`Searching for ${value}`);
       io.socket.get(`/photo/search?${query}=${value}`, res => {
+        console.log(res);
         this.setState({ results: res.data });
       });
     }, 300);

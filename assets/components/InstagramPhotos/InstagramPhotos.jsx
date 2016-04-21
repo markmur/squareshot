@@ -21,6 +21,7 @@ class InstagramPhotos extends Component {
     });
 
     io.socket.get(url, res => {
+      console.debug('pagination?', res, res.pagination);
       this.setState({
         user: res.user,
         photos: res.data,
@@ -44,6 +45,9 @@ class InstagramPhotos extends Component {
         break;
       case 'hashtag/:hashtag':
         url = `/photo/hashtag/${params.hashtag}`;
+        break;
+      case 'liked':
+        url = `/photo/liked`;
         break;
     }
 

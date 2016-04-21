@@ -41,12 +41,13 @@ export default class App extends Component {
   render() {
     var route = this.props.location.pathname;
     var current;
-
+    console.debug('route', route);
     switch (true) {
       case /user/.test(route): current = this.props.params.username; break;
       case /hashtag/.test(route): current = this.props.params.hashtag; break;
       case /feed/.test(route): current = 'Feed'; break;
-      case /(popular|\/)/.test(route): current = 'Popular'; break;
+      case /(popular|\/$)/.test(route): current = 'Popular'; break;
+      case /liked/.test(route): current = 'Liked Photos'; break;
     }
 
     var { authenticated, user } = this.state;

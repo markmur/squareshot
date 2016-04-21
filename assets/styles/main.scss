@@ -496,6 +496,8 @@ header {
     margin: 0.5em;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 4px 16px 0 rgba(black, 0.075);
+
     // default
     width: calc(100% / 4 - 1em);
 

@@ -27,6 +27,8 @@ module.exports.routes = {
   '/photo/feed':                'PhotoController.feed',
   '/photo/user/:username':      'PhotoController.user',
   '/photo/hashtag/:hashtag':    'PhotoController.hashtag',
+  '/photo/search':              'PhotoController.search',
+  '/photo/liked':               'PhotoController.liked',
 
   // UserController
   '/user/index':                'UserController.index',

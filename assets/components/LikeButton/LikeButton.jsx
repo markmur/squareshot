@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Numeral from 'numeral';
+import classNames from 'classnames';
 
 export default class LikeButton extends Component {
 
@@ -25,7 +26,7 @@ export default class LikeButton extends Component {
     var { likes } = this.props;
 
     return (
-      <button class="like-button">
+      <button class={classNames('like-button', { liked: this.props.liked })}>
         <i class="icon-heart"></i> {Numeral(likes).format('0[.]0a')}
       </button>
     );

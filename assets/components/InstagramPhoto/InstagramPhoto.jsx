@@ -42,7 +42,7 @@ class InstagramPhoto extends Component {
             @{photo.user.username}
           </Link>
           <div class="action-buttons">
-            <LikeButton likes={photo.likes.count} id={photo.id}/>
+            <LikeButton likes={photo.likes.count} id={photo.id} liked={photo.user_has_liked}/>
 
             <button class="comments-button">
               <i class="icon-speech-bubble"></i> {Numeral(photo.comments.count).format('0[.]0a')}

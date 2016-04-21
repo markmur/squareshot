@@ -16,7 +16,8 @@ export default class UserNavigation extends Component {
     return (
       <ul>
         <li><Link to={`user/${this.props.username}`}>My Profile</Link></li>
-        <li><Link to="feed">My Feed</Link></li>
+        <li><Link to="/feed">My Feed</Link></li>
+        <li><Link to="/liked">Liked</Link></li>
         <li onClick={this.logout.bind(this)}><a type="button">Logout</a></li>
       </ul>
     );

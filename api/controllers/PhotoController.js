@@ -23,13 +23,9 @@ module.exports = {
     var user = req.query.user;
 
     if (hashtag) {
-      Instagram.searchHashtags(hashtag).then(results => {
-        return res.send(results);
-      });
+      Instagram.searchHashtags(hashtag).then(results => res.send(results));
     } else if (user) {
-      Instagram.searchUsers(user).then(results => {
-        return res.send(results);
-      });
+      Instagram.searchUsers(user).then(results => res.send(results));
     }
   },
 
@@ -41,7 +37,11 @@ module.exports = {
 
   feed: function (req, res) {
     var user = req.session.user;
-    Instagram.feed(req.session.token).then(data => {
+    Instagram.feed(req.session.token).then(data => res.send(data));
+  },
+
+  liked: function (req, res) {
+    Instagram.liked(req.session.token).then(data => {
       res.send(data);
     });
   },
@@ -96,12 +96,12 @@ module.exports = {
 
           if (!user) return res.notFound('User not found');
 
-          getUser(user.id).then(array => {
-            return res.send({
+          getUser(user.id).then(array =>
+            res.send({
               user: array[0].data,
               data: array[1].data,
-            });
-          });
+            })
+          );
         }).catch(err => {
           throw err;
         });

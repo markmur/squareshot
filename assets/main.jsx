@@ -17,6 +17,7 @@ render(
       <Route path="hashtag/:hashtag" component={PhotosPage} />
       <Route path="user/:username" component={PhotosPage} />
       <Route path="profile" component={PhotosPage} />
+      <Route path="liked" component={PhotosPage} />
     </Route>
 
     <Route path="/*" component={NotFound}></Route>
