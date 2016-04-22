@@ -11,7 +11,7 @@ class LoginButton extends Component {
   login(event) {
 
     var options = {
-      protocol: 'https:',
+      protocol: window.location.protocol,
       host: 'api.instagram.com/oauth/authorize/',
       query: {
         client_id: 'dcb4dc592b6e442db2f296e166fe375b',
