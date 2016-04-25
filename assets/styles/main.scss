@@ -333,7 +333,9 @@ header {
     }
 
     .toggle-button {
-      white-space: nowrap;
+      display: flex;
+      flex: 1 0 auto;
+      align-items: center;
       margin-left: 1em;
       padding: 1.2em;
       background: white;
@@ -414,6 +416,7 @@ header {
         position: relative;
         color: $navy;
         border-radius: 4px 0 0 4px;
+        -webkit-appearance: none;
       }
 
       input:focus {
@@ -490,6 +493,7 @@ header {
         padding: 1.3em;
         position: relative;
         z-index: 1;
+        margin: 0;
         background: white;
         outline: none;
         border: none;

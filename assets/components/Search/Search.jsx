@@ -67,7 +67,6 @@ class Search extends Component {
   }
 
   handleSearch(event) {
-
     var val = event.target.value;
 
     if (val && val !== this.state.value) {
@@ -137,10 +136,7 @@ class Search extends Component {
               key={button.type}
               type={button.type}
               class={button.type === this.state.query ? 'active' : ''}
-              onClick={this.handleQueryChange.bind(this)}>
-              {button.name}
-            </button>
-          )}
+              onClick={this.handleQueryChange.bind(this)}>{button.name}</button>)}
         </div>
         <div className="extra-buttons">
           <Link to="/">Popular</Link>
