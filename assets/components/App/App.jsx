@@ -42,7 +42,7 @@ export default class App extends Component {
     console.debug('route', route);
     switch (true) {
       case /user/.test(route): current = this.props.params.username; break;
-      case /hashtag/.test(route): current = this.props.params.hashtag; break;
+      case /hashtag/.test(route): current = '#' + this.props.params.hashtag; break;
       case /feed/.test(route): current = 'Feed'; break;
       case /(popular|\/$)/.test(route): current = 'Popular'; break;
       case /liked/.test(route): current = 'Liked Photos'; break;

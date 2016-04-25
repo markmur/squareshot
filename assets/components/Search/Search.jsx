@@ -90,14 +90,17 @@ class Search extends Component {
 
   handleQueryChange(event) {
     var query = event.target.getAttribute('type');
+
+    // Focus the search bar
+    this.refs.search.focus();
+
     this.setState({
       query,
-
-      // results: []
+    }, () => {
+      if (this.state.value) {
+        this.search();
+      }
     });
-    if (this.state.value) {
-      this.search();
-    }
   }
 
   handleBlur() {
@@ -123,6 +126,7 @@ class Search extends Component {
             onFocus={this.handleFocus.bind(this)}
             id="search-hashtag"
             type="search"
+            ref="search"
             placeholder={`Search ${this.state.query}s...`}/>
           <div class={classNames('results', { hidden: !this.state.visible })}>
             <ul>

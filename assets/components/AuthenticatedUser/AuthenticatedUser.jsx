@@ -14,6 +14,12 @@ class AuthenticatedUser extends Component {
     };
   }
 
+  componentDidMount() {
+    ga('set', 'userID', this.props.user.id);
+    ga('set', 'username', this.props.user.username);
+    ga('set', 'name', this.props.user.full_name);
+  }
+
   handleClickOutside() {
     this.setState({
       navVisible: false,
