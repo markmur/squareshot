@@ -103,7 +103,7 @@ class Search extends Component {
   handleBlur() {
     setTimeout(() => {
       this.setState({ visible: false });
-    }, 200);
+    }, 50);
   }
 
   handleFocus() {
