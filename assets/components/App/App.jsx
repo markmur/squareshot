@@ -39,7 +39,7 @@ export default class App extends Component {
   render() {
     var route = this.props.location.pathname;
     var current;
-    console.debug('route', route);
+
     switch (true) {
       case /user/.test(route): current = this.props.params.username; break;
       case /hashtag/.test(route): current = '#' + this.props.params.hashtag; break;

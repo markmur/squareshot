@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { State } from 'react-router';
+import { browserHistory, State } from 'react-router';
 import InstagramPhoto from 'components/InstagramPhoto/InstagramPhoto';
 import UserProfileInfo from 'components/UserProfileInfo/UserProfileInfo';
 import Loader from 'components/Loader/Loader';
@@ -22,8 +22,11 @@ class InstagramPhotos extends Component {
       user: null,
     });
 
-    io.socket.get(this.state.url, res => {
-      console.log(res.pagination);
+    io.socket.get(this.state.url, (res, jwr) => {
+
+      if (jwr.statusCode !== 200) {
+        browserHistory.push('/popular');
+      }
 
       this.setState({
         user: res.user,
@@ -43,8 +46,6 @@ class InstagramPhotos extends Component {
       console.debug('FETCHING NEXT PAGE', url);
 
       io.socket.get(url, res => {
-
-        console.log(res.data);
 
         var photos = this.state.photos.concat(res.data);
         this.setState({

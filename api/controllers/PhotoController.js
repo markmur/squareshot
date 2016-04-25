@@ -37,6 +37,11 @@ module.exports = {
 
   feed: function (req, res) {
     var user = req.session.user;
+
+    if (!user) {
+      return res.forbidden('You must be logged in to access this page.');
+    }
+
     Instagram.feed(req.session.token, req.param('next_max_id')).then(data => res.send(data));
   },
 
