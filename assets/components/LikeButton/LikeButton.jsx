@@ -13,21 +13,16 @@ export default class LikeButton extends Component {
     super(props);
   }
 
-  // like(event) {
-  //   var classList = event.currentTarget.classList;
-  //
-  //   io.socket.post(`/photo/like/${this.props.id}`, res => {
-  //     classList.add('liked');
-  //   });
-  // }
-
   render() {
 
     var { likes } = this.props;
 
     return (
       <button class={classNames('like-button', { liked: this.props.liked })}>
-        <i class="icon-heart"></i> {Numeral(likes).format('0[.]0a')}
+        <i class={classNames({
+          'icon-heart': !this.props.liked,
+          'icon-heart-filled': this.props.liked,
+        })}></i> {Numeral(likes).format('0[.]0a')}
       </button>
     );
   }

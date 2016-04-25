@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import {State} from 'react-router';
+import { State } from 'react-router';
 import InstagramPhoto from 'components/InstagramPhoto/InstagramPhoto';
 import UserProfileInfo from 'components/UserProfileInfo/UserProfileInfo';
 import Loader from 'components/Loader/Loader';
+import Settings from 'services/settings';
+import InfiniteScroll from 'components/InfiniteScroll/InfiniteScroll';
 
 class InstagramPhotos extends Component {
 
@@ -14,20 +16,43 @@ class InstagramPhotos extends Component {
     };
   }
 
-  getPhotos(url) {
+  getPhotos() {
     this.setState({
       photos: [],
       user: null,
     });
 
-    io.socket.get(url, res => {
-      console.debug('pagination?', res, res.pagination);
+    io.socket.get(this.state.url, res => {
+      console.log(res.pagination);
+
       this.setState({
         user: res.user,
         photos: res.data,
         pagination: res.pagination || {},
       });
     });
+  }
+
+  appendPhotos() {
+    if (this.state.photos.length && this.state.pagination) {
+      var { url } = this.state;
+      var next = this.state.pagination.next_max_id;
+
+      url += '?next_max_id=' + next;
+
+      console.debug('FETCHING NEXT PAGE', url);
+
+      io.socket.get(url, res => {
+
+        console.log(res.data);
+
+        var photos = this.state.photos.concat(res.data);
+        this.setState({
+          photos,
+          pagination: res.pagination,
+        });
+      });
+    }
   }
 
   resolveUrl(path, params) {
@@ -51,11 +76,15 @@ class InstagramPhotos extends Component {
         break;
     }
 
-    this.getPhotos(url);
+    this.setState({ url }, this.getPhotos);
   }
 
   componentDidMount() {
     this.resolveUrl(this.props.url, this.props.params);
+
+    this.context.store.subscribe(() => {
+      this.forceUpdate();
+    });
   }
 
   componentWillReceiveProps(props) {
@@ -68,11 +97,14 @@ class InstagramPhotos extends Component {
 
   render() {
     var { photos } = this.state;
+    var { store } = this.context;
+    var state = store.getState();
+
     var elements;
 
     if (photos && photos.length) {
       elements = photos.map(photo =>
-        <InstagramPhoto key={photo.id} photo={photo} />
+        <InstagramPhoto key={photo.id} photo={photo} hideCaptions={state.captionsHidden} />
       );
     } else {
       elements = <Loader />;
@@ -83,12 +115,17 @@ class InstagramPhotos extends Component {
     return (
       <div class="content">
         {user}
-        <div id="instafeed">
-          {elements}
-        </div>
+
+          <div id="instafeed">
+            {elements}
+          </div>
       </div>
     );
   }
 }
+
+InstagramPhotos.contextTypes = {
+  store: React.PropTypes.object.isRequired,
+};
 
 export default InstagramPhotos;

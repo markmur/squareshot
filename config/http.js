@@ -64,7 +64,7 @@ module.exports.http = {
       var start = Date.now();
       res.on('finish', function () {
         var duration = Date.now() - start;
-        sails.log.debug('Response Time ::', duration);
+        sails.log.debug(`Response Time [${duration}ms]`);
       });
 
       next();

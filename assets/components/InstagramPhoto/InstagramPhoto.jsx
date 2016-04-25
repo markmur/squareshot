@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import Numeral from 'numeral';
-
 import LikeButton from 'components/LikeButton/LikeButton';
+import classNames from 'classnames';
 
 class InstagramPhoto extends Component {
 
@@ -22,17 +22,31 @@ class InstagramPhoto extends Component {
       } else return word;
     });
 
-    return <p class='caption'>{caption}</p>;
+    return caption;
   }
 
   render() {
-    var photo = this.props.photo;
+    var { hideCaptions, photo } = this.props;
     var caption;
+    var content;
 
     if (photo.caption && photo.caption.text) {
       caption = this.formatCaption(photo.caption.text);
-    } else {
-      caption = <p class="caption"></p>;
+    }
+
+    if (photo.type === 'image') {
+      content =
+        <img
+          src={photo.images.standard_resolution.url}
+          width={photo.images.standard_resolution.width}
+          height={photo.images.standard_resolution.height} />;
+    } else if (photo.type === 'video') {
+      content =
+        <video
+          controls
+          style={{ maxWidth: '100%' }}>
+          <source src={photo.videos.standard_resolution.url} />
+        </video>;
     }
 
     return (
@@ -50,13 +64,10 @@ class InstagramPhoto extends Component {
           </div>
         </div>
         <div class="image-content">
-          <img
-            src={photo.images.standard_resolution.url}
-            width={photo.images.standard_resolution.width}
-            height={photo.images.standard_resolution.height} />
+          {content}
         </div>
 
-        {caption}
+        <p class={classNames('caption', { hidden: hideCaptions })}>{caption}</p>
 			</div>
     );
   }

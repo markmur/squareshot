@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 import _ from 'lodash';
+import classNames from 'classnames';
+import Toggle from 'components/Toggle/Toggle';
 
-export default class Search extends Component {
+class Search extends Component {
 
   constructor(props) {
     super(props);
@@ -11,6 +13,7 @@ export default class Search extends Component {
       results: [],
       query: 'hashtag',
       value: null,
+      visible: false,
       buttons: [
         { type: 'hashtag', name: 'Hashtags' },
         { type: 'user', name: 'Users' },
@@ -32,7 +35,7 @@ export default class Search extends Component {
       console.info(`Searching for ${value}`);
       io.socket.get(`/photo/search?${query}=${value}`, res => {
         console.log(res);
-        this.setState({ results: res.data });
+        this.setState({ results: res.data, visible: true });
       });
     }, 300);
   }
@@ -44,22 +47,32 @@ export default class Search extends Component {
 
     switch (query) {
       case 'hashtag':
-        return this.state.results.map(result => {
-          return <li key={result.name}><Link to={`hashtag/${result.name}`}>#{result.name}</Link></li>;
-        });
+        return this.state.results.map(result =>
+          <li key={result.name}>
+            <Link to={`/hashtag/${result.name}`}>#{result.name}</Link>
+          </li>
+        );
         break;
       case 'user':
-        return this.state.results.map(result => {
-          return <li key={result.id}><Link to={`user/${result.username}`}><img src={result.profile_picture} /><strong>@{result.username}</strong></Link></li>;
-        });
+        return this.state.results.map(result =>
+          <li key={result.id}>
+            <Link to={`/user/${result.username}`}>
+              <img width="40" height="40" src={result.profile_picture} />
+              <strong>@{result.username}</strong>
+            </Link>
+          </li>
+        );
         break;
     }
   }
 
   handleSearch(event) {
-    if (event.target.value) {
+
+    var val = event.target.value;
+
+    if (val && val !== this.state.value) {
       this.setState({
-        value: event.target.value,
+        value: val,
       }, () => {
         console.info('Searching for', this.state.value);
         this.search(this.state.query, this.state.value);
@@ -88,27 +101,62 @@ export default class Search extends Component {
     }
   }
 
+  handleBlur() {
+    setTimeout(() => {
+      this.setState({ visible: false });
+    }, 200);
+  }
+
+  handleFocus() {
+    this.setState({ visible: true });
+  }
+
   render() {
+
+    var { store } = this.context;
+
     return (
-      <div>
+      <div class="navigation">
         <div className="search">
           <input
             onChange={this.handleSearch.bind(this)}
+            onBlur={this.handleBlur.bind(this)}
+            onFocus={this.handleFocus.bind(this)}
             id="search-hashtag"
             type="search"
             placeholder={`Search ${this.state.query}s...`}/>
-          <div className="results">
+          <div class={classNames('results', { hidden: !this.state.visible })}>
             <ul>
               {this.returnResults()}
             </ul>
           </div>
         </div>
         <div className="search-buttons">
-          {this.state.buttons.map(button => {
-            return <button key={button.type} type={button.type} class={button.type === this.state.query ? 'active' : ''} onClick={this.handleQueryChange.bind(this)}>{button.name}</button>;
-          })}
+          {this.state.buttons.map(button =>
+            <button
+              key={button.type}
+              type={button.type}
+              class={button.type === this.state.query ? 'active' : ''}
+              onClick={this.handleQueryChange.bind(this)}>
+              {button.name}
+            </button>
+          )}
         </div>
+        <div className="extra-buttons">
+          <Link to="/">Popular</Link>
+          <Link to="/feed">Feed</Link>
+        </div>
+        <Toggle
+          label={'Hide Captions'}
+          checked={store.getState().captionsHidden}
+          onChange={store.dispatch.bind(store, { type: 'TOGGLE_CAPTIONS' })} />
       </div>
     );
   }
 }
+
+Search.contextTypes = {
+  store: React.PropTypes.object.isRequired,
+};
+
+export default Search;

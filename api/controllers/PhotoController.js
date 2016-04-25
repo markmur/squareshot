@@ -37,7 +37,7 @@ module.exports = {
 
   feed: function (req, res) {
     var user = req.session.user;
-    Instagram.feed(req.session.token).then(data => res.send(data));
+    Instagram.feed(req.session.token, req.param('next_max_id')).then(data => res.send(data));
   },
 
   liked: function (req, res) {
@@ -47,7 +47,7 @@ module.exports = {
   },
 
   hashtag: function (req, res) {
-    Instagram.hashtag(req.params.hashtag).then(response => {
+    Instagram.hashtag(req.params.hashtag, req.param('next_max_id')).then(response => {
       res.send(response);
     });
   },

@@ -11,6 +11,7 @@ export default {
   },
 
   onChange() {
+    console.debug('Does this ever get called?');
     return this.captionsHidden();
   },
 

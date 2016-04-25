@@ -7,6 +7,10 @@
 @import "_loaders";
 @import "_animations";
 
+.hidden {
+  display: none;
+}
+
 .tgl {
   display: none;
   // add default box-sizing for this scope
@@ -319,16 +323,52 @@ header {
   }
 
   nav {
-    max-width: 800px;
-    margin: 0 auto 2em;
+    max-width: 860px;
+    margin: 0 auto;
     position: relative;
 
+    .navigation {
+      display: flex;
+      align-items: center;
+    }
+
+    .toggle-button {
+      white-space: nowrap;
+      margin-left: 1em;
+      padding: 1.2em;
+      background: white;
+      font-size: 13px;
+      border-radius: 4px;
+      border: 1px solid #E2E4E8;
+      cursor: pointer;
+      transition: box-shadow 0.5s ease, color 0.2s ease;
+
+      label {
+        cursor: pointer;
+        font-weight: 400;
+        color: $light-navy;
+      }
+
+      &:hover {
+        box-shadow: 0 2px 8px 0 rgba(0,0,0,0.1);
+        z-index: 2;
+        color: $navy;
+
+        label {
+          color: $blue;
+        }
+      }
+
+      input {
+        margin-right: 1em;
+      }
+    }
+
     .search {
-      float: left;
-      max-width: 100%;
-      width: calc(100% - 460px);
+      width: 100%;
       text-align: left;
       position: relative;
+      margin-right: -1px;
 
       #search-button {
         background: transparent;
@@ -373,7 +413,6 @@ header {
         outline: none;
         position: relative;
         color: $navy;
-        box-sizing: initial;
         border-radius: 4px 0 0 4px;
       }
 
@@ -387,11 +426,18 @@ header {
         width: 110%;
         max-height: 300px;
         background: rgba(white, 0.9);
+        box-shadow: 0 4px 16px rgba(black, 0.1);
+        border-radius: 0 0 3px 3px;
         z-index: 100;
         overflow-y: scroll;
 
         ul {
           li {
+
+            &:nth-child {
+              background: #f8f8f8;
+            }
+
             &:hover {
               background: $blue;
               color: white;
@@ -401,12 +447,14 @@ header {
               display: block;
               padding: 0.5em 1em;
               font-size: 0.9em;
+              font-weight: 500;
 
               img {
                 width: 40px;
                 border-radius: 50%;
                 vertical-align: middle;
                 margin-right: 1em;
+                background-color: $blue;
               }
             }
           }
@@ -416,10 +464,13 @@ header {
 
     .extra-buttons {
       @extend .search-buttons;
-      float: right!important;
       width: auto;
+      margin-left: 1em;
 
       a {
+        font-size: 13px!important;
+        padding: 1.4em!important;
+
         &:hover {
           color: $blue!important;
         }
@@ -431,15 +482,14 @@ header {
     }
 
     .search-buttons {
-      float: left;
-      margin-left: 2em;
+      display: flex;
+      flex: 1 0 auto;
 
       a,
       button {
         padding: 1.3em;
         position: relative;
         z-index: 1;
-        float: left;
         background: white;
         outline: none;
         border: none;
@@ -492,29 +542,31 @@ header {
   display: flex;
   flex-wrap: wrap;
 
+  $image-margin: 0.75em;
+
   .image {
-    margin: 0.5em;
+    margin: $image-margin;
     position: relative;
     overflow: hidden;
     box-shadow: 0 4px 16px 0 rgba(black, 0.075);
 
     // default
-    width: calc(100% / 4 - 1em);
+    width: calc(100% / 4 - (#{$image-margin} * 2));
 
     @include xs-device {
-      width: calc(100% - 1em);
+      width: calc(100% - (#{$image-margin} * 2));
     }
     @include sm-device {
-      width: calc(100% / 2 - 1em);
+      width: calc(100% / 2 - (#{$image-margin} * 2));
     }
     @include md-device {
-      width: calc(100% / 3 - 1em);
+      width: calc(100% / 3 - (#{$image-margin} * 2));
     }
     @include lg-device {
-      width: calc(100% / 4 - 1em);
+      width: calc(100% / 4 - (#{$image-margin} * 2));
     }
     @include xl-device {
-      width: calc(100% / 5 - 1em);
+      width: calc(100% / 5 - (#{$image-margin} * 2));
     }
 
     img {
@@ -566,11 +618,9 @@ header {
         }
 
         &.like-button.liked {
-          color: hotpink;
-          border-color: hotpink;
-
           i {
             color: hotpink;
+            font-size: 0.85em;
           }
         }
       }

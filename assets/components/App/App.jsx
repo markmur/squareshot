@@ -36,8 +36,6 @@ export default class App extends Component {
     });
   }
 
-  componentDidMount() {}
-
   render() {
     var route = this.props.location.pathname;
     var current;

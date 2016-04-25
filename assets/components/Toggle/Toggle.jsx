@@ -23,15 +23,15 @@ export default class Toggle extends Component {
   }
 
   handleClick(e) {
-    console.log(this, e);
     this.setState({ checked: !this.state.checked });
     this.props.onChange();
   }
 
   render() {
     return (
-      <div>
-        <input ref='input' type='checkbox' defaultChecked={this.state.checked} onChange={this.handleClick.bind(this)} />
+      <div class="toggle-button">
+        <input ref='input' id="toggle" type='checkbox' defaultChecked={this.state.checked} onChange={this.handleClick.bind(this)} />
+        <label for="toggle">{this.props.label}</label>
       </div>
     );
   }

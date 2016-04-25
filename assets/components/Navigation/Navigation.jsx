@@ -5,22 +5,25 @@ import Settings from 'services/settings';
 import Search from 'components/Search/Search';
 import Toggle from 'components/Toggle/Toggle';
 
-export default class Navigation extends Component {
+class Navigation extends Component {
 
   constructor(props) {
     super(props);
   }
 
   render() {
+    var { store } = this.context;
+
     return (
       <nav>
         <Search />
-        <div className="extra-buttons">
-          <Link to="/">Popular</Link>
-          <Link to="/feed">Feed</Link>
-        </div>
-      {/* <Toggle checked={Settings.captionsHidden()} onChange={Settings.toggleCaptions} /> */}
       </nav>
     );
   }
 }
+
+Navigation.contextTypes = {
+  store: React.PropTypes.object.isRequired,
+};
+
+export default Navigation;

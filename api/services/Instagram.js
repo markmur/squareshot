@@ -44,10 +44,14 @@ module.exports = {
   ////////////////////////////
   /// 	User Services			 ///
   ////////////////////////////
-  feed: function (token) {
+  feed: function (token, next) {
     if (!token) throw 'access_token required for user feed';
 
-    return this._req('GET', '/v1/users/self/feed', token);
+    var params = {};
+
+    if (next) params.next_max_id = next;
+
+    return this._req('GET', '/v1/users/self/feed', token, params);
   },
 
   profile: function (id, token) {
